@@ -1,11 +1,13 @@
 
 import React, { Component } from 'react'
 import { View, Text, FlatList, StyleSheet, SafeAreaView, Image, Dimensions, TouchableOpacity } from 'react-native'
-import {kWidth, kHeight} from '../Utils/YQConstant'
-import Toast from '../Utils/YQToast'
+import { kWidth, kHeight } from '../Utils/YQConstant'
+import YQToast, { ToastHide } from '../Utils/YQToast'
 import YQRequest from '../YQRequest/YQRequest'
 import { LOGIN_URL } from '../Utils/PathMap'
-// import { Toast } from 'teaset/components/Toast/Toast'
+import md5 from 'blueimp-md5'
+import { max } from 'react-native-reanimated'
+import Toast from 'react-native-root-toast'
 const itemMargin = 8
 const itemWidth = 72
 
@@ -37,16 +39,32 @@ export default class YQHome extends Component {
     }
 
     componentDidMount() {
-        YQRequest.post( LOGIN_URL,{
-            mobile: '18738193980',
-            password: '123456'
-        })
-        .then(function(response) {
-            console.log(response)
-        })
-        .catch(function(error) {
-            console.log(error)
-        })
+        let password = md5('123456')
+        console.log(password)
+        // YQRequest.post(LOGIN_URL,{
+        //     mobile: '18738193980',
+        //     password: 'e10adc3949ba59abbe56e057f20f883e'
+        // })
+        // .then(function(response) {
+        //     console.log(response)
+        // })
+        // .catch(function(error) {
+        //     console.log(error)
+        // })
+        YQRequest.get(
+            LOGIN_URL,
+            {
+                mobile: '18738193980',
+                password: 'e10adc3949ba59abbe56e057f20f883e'
+            }
+        )
+            .then((response) => {
+                console.log(response)
+
+            })
+            .catch(function (error) {
+                console.log(error)
+            })
     }
 
     customTitleView() {
@@ -59,7 +77,7 @@ export default class YQHome extends Component {
                         <Text style={{ fontSize: 12, color: '#C5C8CC' }}>🔎请输入老师姓名或课程名称</Text>
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => { { alert('clickRightItem') } }} >
                     <Text style={{ marginLeft: 14, fontSize: 22, color: '#C5C8CC' }}>🎧</Text>
                 </TouchableOpacity>
             </View>
@@ -116,7 +134,7 @@ export default class YQHome extends Component {
 
     _createListCell(item) {
         return (
-            <TouchableOpacity activeOpacity={0.5} onPress={()=> this._clickListCell} >
+            <TouchableOpacity activeOpacity={0.5} onPress={this._clickListCell} >
                 <View style={styles.itemStyle}>
                     <Text style={{ fontSize: 15, color: '#1D252C', fontWeight: 'bold', marginTop: 20, marginBottom: 30 }}>{item.key} + '2021考研名校班【政英+法硕(法学)+专 业课公共课1对1+暑期集'</Text>
                     <View style={{ flexDirection: 'row', marginBottom: 20 }}>
@@ -137,12 +155,14 @@ export default class YQHome extends Component {
         )
     }
 
-    _clickListCell=()=> {
+    _clickListCell = () => {
         console.log('gyq')
-        Toast.showLoading('clickCell')
-        setTimeout(() => {
-            Toast.hideLoading()
-        }, 1000);
+        YQToast(
+            'gyq',
+            Toast.durations.SHORT,
+            Toast.positions.CENTER
+        )
+
     }
 }
 
