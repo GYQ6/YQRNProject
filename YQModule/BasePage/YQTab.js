@@ -82,7 +82,8 @@ const styles = StyleSheet.create({
         backgroundColor: 'white'
     },
     tabItemImage: {
-       
+        width: 16,
+        height: 16
     }
 })
 
