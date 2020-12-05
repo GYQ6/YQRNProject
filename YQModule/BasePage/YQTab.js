@@ -58,7 +58,7 @@ class YQTab extends Component {
     render() {
         const { paths, selectedTab } = this.state
         return (
-            <TabNavigator style={styles.tabStyle}>
+            <TabNavigator tabBarStyle={styles.tabStyle}>
                 { paths.map((v, i) => 
                     <TabNavigator.Item
                         key={i}

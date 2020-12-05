@@ -116,7 +116,7 @@ export default class YQHome extends Component {
 
     _createListCell(item) {
         return (
-            <TouchableOpacity activeOpacity={0.5} onPress={()=> this._clickListCell} >
+            <TouchableOpacity activeOpacity={0.5} onPress={()=> {this._clickListCell}} >
                 <View style={styles.itemStyle}>
                     <Text style={{ fontSize: 15, color: '#1D252C', fontWeight: 'bold', marginTop: 20, marginBottom: 30 }}>{item.key} + '2021考研名校班【政英+法硕(法学)+专 业课公共课1对1+暑期集'</Text>
                     <View style={{ flexDirection: 'row', marginBottom: 20 }}>
