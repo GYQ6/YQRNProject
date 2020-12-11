@@ -3,8 +3,7 @@ import React, { Component } from 'react'
 import { View, Text, FlatList, StyleSheet, SafeAreaView, Image, Dimensions, TouchableOpacity } from 'react-native'
 import {kWidth, kHeight} from '../Utils/YQConstant'
 import Toast from '../Utils/YQToast'
-import YQRequest from '../YQRequestManager/YQRequest'
-import { LOGIN_URL } from '../Utils/PathMap'
+import YQHomeService from '../../YQAPI/Home/HomeService'
 // import { Toast } from 'teaset/components/Toast/Toast'
 const itemMargin = 8
 const itemWidth = 72
@@ -37,10 +36,7 @@ export default class YQHome extends Component {
     }
 
     componentDidMount() {
-        YQRequest.post( LOGIN_URL,{
-            mobile: '18738193980',
-            password: '123456'
-        })
+        YQHomeService.fetchLoginNetwork()
         .then(function(response) {
             console.log(response)
         })
@@ -116,7 +112,7 @@ export default class YQHome extends Component {
 
     _createListCell(item) {
         return (
-            <TouchableOpacity activeOpacity={0.5} onPress={()=> this._clickListCell} >
+            <TouchableOpacity activeOpacity={0.5} onPress={this._clickListCell} >
                 <View style={styles.itemStyle}>
                     <Text style={{ fontSize: 15, color: '#1D252C', fontWeight: 'bold', marginTop: 20, marginBottom: 30 }}>{item.key} + '2021考研名校班【政英+法硕(法学)+专 业课公共课1对1+暑期集'</Text>
                     <View style={{ flexDirection: 'row', marginBottom: 20 }}>
