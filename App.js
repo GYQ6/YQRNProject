@@ -4,7 +4,7 @@ import {
   StyleSheet,
   SafeAreaView,
 } from 'react-native';
-import YQNavigationContainer from './YQModule/BasePage/YQNavigation'
+import YQNavigationContainer from './src/YQModule/BasePage/YQNavigation'
 
 export default class App extends Component {
   constructor(props) {
