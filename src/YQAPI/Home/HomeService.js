@@ -9,7 +9,7 @@ class YQHomeService {
             YQRequest.post(
                 url = LOGIN_URL,
                 params = {
-                    phone: '1377607226',
+                    phone: '13776072264',
                     c: '111'
                 },
                 options = {

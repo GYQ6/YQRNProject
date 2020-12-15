@@ -5,6 +5,7 @@ import { kWidth, kHeight } from '../../Utils/YQConstant'
 import YQHomeService from '../../YQAPI/Home/HomeService'
 import YQLoading from '../../Utils/YQLoading'
 import YQToast from '../../Utils/YQToast'
+import { Actions } from 'react-native-router-flux'
 const itemMargin = 8
 const itemWidth = 72
 
@@ -149,11 +150,12 @@ export default class YQHome extends Component {
     }
 
     _clickListCell = () => {
-        console.log('gyq')
-        YQLoading.showLoading()
-        setTimeout(() => {
-            YQLoading.close()
-        }, 1000);
+        // console.log('gyq')
+        // YQLoading.showLoading()
+        // setTimeout(() => {
+        //     YQLoading.close()
+        // }, 1000);
+        Actions.YQHomeSubPage()
     }
 
     _rightBarItemClick = () => {
