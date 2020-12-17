@@ -17,6 +17,7 @@ class YQCustomBackButton extends Component {
                 Actions.pop();
             }}>
                 {/* <Icon name={'ios-settings'} size={20} color={'#333'}/> */}
+                
                 <Text>返回</Text>
             </TouchableOpacity>
         )

@@ -100,10 +100,11 @@ class YQRouter extends Component {
                         key="YQHomeSubPage"
                         component={YQHomeSubPage}
                         title="首页子页面"
-                        renderBackButton={() => <YQCustomBackButton/>}/>
+                        renderBackButton={() => <YQCustomBackButton />}>
+                    </Scene>
                 </Stack>
             </Router>
-        )
+        ) 
     }
 
 }

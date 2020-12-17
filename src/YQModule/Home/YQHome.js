@@ -6,10 +6,21 @@ import YQHomeService from '../../YQAPI/Home/HomeService'
 import YQLoading from '../../Utils/YQLoading'
 import YQToast from '../../Utils/YQToast'
 import { Actions } from 'react-native-router-flux'
+import { connect } from 'react-redux'
+import store from '../../Redux/Store/index'
+
 const itemMargin = 8
 const itemWidth = 72
 
+
+
 export default class YQHome extends Component {
+
+    constructor() {
+        super()
+        this._actionHandle()
+    }
+
     render() {
         return (
             <SafeAreaView style={styles.listContainer}>
@@ -86,7 +97,7 @@ export default class YQHome extends Component {
                     ]}
                     horizontal={true}
                     showsHorizontalScrollIndicator={false}
-                    renderItem={({ item })=> this.cellHeaderViewBottomViewCell(item)}
+                    renderItem={({ item }) => this.cellHeaderViewBottomViewCell(item)}
                 />
             </View>
         )
@@ -115,16 +126,16 @@ export default class YQHome extends Component {
         )
     }
 
-    createHeaderViewAppViewItem =(value)=> {
+    createHeaderViewAppViewItem = (value) => {
         return (
             <View style={{ backgroundColor: 'white', alignItems: 'center', marginLeft: 8 }}>
                 <Image style={{ width: 72, height: 72, backgroundColor: 'red', marginBottom: 10 }}></Image>
-        <Text style={{ fontSize: 12, color: '#1D252C', textAlign: 'center' }}>{value}</Text>
+                <Text style={{ fontSize: 12, color: '#1D252C', textAlign: 'center' }}>{value}</Text>
             </View>
         )
     }
 
-    cellHeaderViewBottomViewCell =(item)=> {
+    cellHeaderViewBottomViewCell = (item) => {
         return (
             <TouchableOpacity onPress={this._headerListCellItem}>
                 <View style={{ backgroundColor: 'white', alignItems: 'center', flexDirection: 'row', borderRadius: 12, marginRight: 10 }}>
@@ -150,12 +161,13 @@ export default class YQHome extends Component {
     }
 
     _clickListCell = () => {
-        // console.log('gyq')
-        // YQLoading.showLoading()
-        // setTimeout(() => {
-        //     YQLoading.close()
-        // }, 1000);
-        Actions.YQHomeSubPage()
+        let itemId = 100
+        let value = 'gyq'
+        let dic = {
+            'itemId': itemId,
+            'value': value
+        }
+        Actions.YQHomeSubPage(dic)
     }
 
     _rightBarItemClick = () => {
@@ -168,8 +180,12 @@ export default class YQHome extends Component {
             })
     }
 
-    _headerListCellItem =()=> {
+    _headerListCellItem = () => {
         YQToast.showToast('click')
+    }
+
+    _actionHandle = () => {
+        store.subscribe(() => console.log(store.getState()))
     }
 }
 
@@ -183,6 +199,8 @@ class UserItemView extends Component {
         )
     }
 }
+
+//export connect(null, mapdispathProps)()
 
 const styles = StyleSheet.create({
     headerViewStyle: {
