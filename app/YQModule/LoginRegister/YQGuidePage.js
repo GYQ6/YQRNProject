@@ -23,7 +23,7 @@ export default class YQGuidePage extends Component {
                 />
                 <View style={styles.jumpButtonStyle}>
                     <TouchableOpacity onPress={() => this.handleJumpButtonEvent({ index: 4 })}>
-                        <Text style={{ fontSize: 14, color: '#fff' }}>跳过</Text>
+                        <Text style={{ fontSize: 14, color: '#fff', width: 60, height: 30, textAlign: 'center'}}>跳过</Text>
                     </TouchableOpacity>
                 </View>
 
@@ -47,8 +47,7 @@ export default class YQGuidePage extends Component {
 
     handleJumpButtonEvent = (item) => {
         if (item.index == 4) {
-            //Actions.replace('YQTabbar')
-            Actions.reset('YQTabbar')
+            Actions.replace('YQTabbar')
         }
     }
 }
@@ -75,7 +74,6 @@ const styles = StyleSheet.create({
     jumpButtonStyle: {
         alignItems: 'center',
         justifyContent: 'center',
-        textAlignVertical: 'center',
         backgroundColor: '#333',
         opacity: 0.5,
         borderRadius: 20,

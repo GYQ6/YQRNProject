@@ -1,54 +1,78 @@
-
-import YQLoading from '../Utils/YQLoading'
-import instance from './YQInterceptors'
-import * as Code from './YQNetworkCode'
-import handlerError from './YQNetworkCode'
+import YQLoading from '../Utils/YQLoading';
+import instance from './YQInterceptors';
+import * as Code from './YQNetworkCode';
+import handlerError from './YQNetworkCode';
 import YQToast from '../Utils/YQToast';
 
-function request(url, params, options = { loading: true, headers: {} }, method) {
-
-  if (options.loading) YQLoading.showLoading();
+function request(
+  url,
+  options = {loading: true, headers: {}},
+  params = {},
+  method,
+) {
+  console.log('options: ' + options);
+  // if (options.loading) {
+  //   YQLoading.showLoading();
+  // }
   return new Promise((resolve, reject) => {
-    let headers = options['headers']
-    instance({
-      url: url,
-      method: method,
-      data: params,
-      headers: headers
-    }).then((res) => {
-      // 此处作用很大，可以扩展很多功能。
-      // 比如对接多个后台，数据结构不一致，可做接口适配器
-      // 也可对返回日期/金额/数字等统一做集中处理
-      console.log(res)
-      if (res != null && res.code == Code.SUCCESS) {
-        resolve(res.data);
-      } else {
-        //配置错误提示
-        if (res.message) {
-          YQToast.showToast(messagError)
+    let headers = options.headers;
+    let config = {};
+    if (method === Method.get) {
+      config = {
+        url: url,
+        method: method,
+        headers: headers,
+      };
+    } else {
+      config = {
+        url: url,
+        method: method,
+        data: params,
+        headers: headers,
+      };
+    }
+    instance(config)
+      .then((res) => {
+        // 此处作用很大，可以扩展很多功能。
+        // 比如对接多个后台，数据结构不一致，可做接口适配器
+        // 也可对返回日期/金额/数字等统一做集中处理
+        console.log('返回数据' + res);
+        if (res != null && res.code === Code.SUCCESS) {
+          resolve(res.data);
         } else {
-          let messagError = handlerError(res.code, res.message)
-          YQToast.showToast(messagError)
+          //配置错误提示
+          console.log('返回的错误:' + res);
+          if (res.msg) {
+            YQToast.showToast(res.msg);
+          } else {
+            let messagError = handlerError(res.code, res.msg);
+            YQToast.showToast(messagError);
+          }
         }
-      }
-    }).catch((error) => {
-      YQToast.showToast(error)
-      //let errorMessage = handlerError(error.code, error)
-    }).finally(() => {
-      YQLoading.close()
-    })
-  })
+      })
+      .catch((error) => {
+        YQToast.showToast(error);
+      })
+      .finally(() => {
+        YQLoading.close();
+      });
+  });
 }
 
-function get(url, params, options) {
-  return request(url, params, options, 'get')
-}
+const get = (url, options = {}, params = {}) => {
+  return request(url, options, params, Method.get);
+};
 
-function post(url, params, options) {
-  return request(url, params, options, 'post')
-}
+const post = (url, options = {}, params = {}) => {
+  return request(url, options, params, Method.post);
+};
+
+const Method = {
+  get: 'get',
+  post: 'post',
+};
 
 export default {
   get,
-  post
-}
+  post,
+};

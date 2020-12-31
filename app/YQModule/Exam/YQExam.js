@@ -1,30 +1,79 @@
-import React, {Component} from 'react'
-import {View, Text, TouchableOpacity} from 'react-native'
-import store from '../../Redux/Store/index'
+/* eslint-disable react-native/no-inline-styles */
+import React from 'react';
+import {View, Text, FlatList, Image, StyleSheet} from 'react-native';
+import {kSeparationColor, kThemeBlack, kWidth} from '../../Utils/YQConstant';
+import YQExamService from '../../YQAPI/Exam/ExamService';
 
 class YQExam extends React.Component {
-    render() {
-        console.log('render...挂载中')
-        return (
-            <TouchableOpacity style={{ flex:1, justifyContent:'center', alignItems:'center'}} onPress={this.refreshHomeListPage}>
-                <Text>
-                    click
-                    {/* 单项数据流: 传递的数据readonly 不能修改,  子组件向父组件传值, 父组件传递一个方法 */}
-                </Text>
-            </TouchableOpacity>
+  constructor() {
+    super();
+    this.state = {
+      dataSource: {},
+    };
+  }
 
-        )
-    }
+  _keyExtractor = (item, index) => item.key;
+  render() {
+    return (
+      <View style={styles.contentStyle}>
+        <FlatList
+          data={this.state.dataSource}
+          renderItem={(item, index) => this._createListItem(item, index)}
+          numColumns={2}
+          keyExtractor={this._keyExtractor}
+        />
+      </View>
+    );
+  }
 
-    refreshHomeListPage = () => {
-        store.dispatch(actions.refreshAction);
-    }
+  _createListItem = (item, index) => {
+    let itemM = item.item;
+    return (
+      <View key={index} style={styles.itemStye}>
+        <Image
+          style={{
+            marginTop: 20,
+            width: 50,
+            height: 50,
+            marginBottom: 10,
+          }}
+          source={{uri: itemM.image}}
+        />
+        <Text style={{color: kThemeBlack, fontSize: 13, marginBottom: 20}}>
+          {itemM.title}
+        </Text>
+      </View>
+    );
+  };
+
+  componentDidMount() {
+    YQExamService.fetchExamNetwork()
+      .then((response) => {
+        this.setState({dataSource: response});
+        console.log(this.state.dataSource);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
 }
 
-const actions = {
-    refreshAction: {
-        type: 'REFRESH_LIST'
-    }
-}
+const styles = StyleSheet.create({
+  contentStyle: {
+    flex: 1,
+  },
+  columeWrapStyle: {
+    borderWidth: 0.5,
+    borderColor: kSeparationColor,
+  },
+  itemStye: {
+    width: kWidth / 2,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderBottomWidth: 0.5,
+    borderColor: kSeparationColor,
+    borderRightWidth: 0.5,
+  },
+});
 
-export default YQExam
+export default YQExam;

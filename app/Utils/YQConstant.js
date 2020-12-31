@@ -12,6 +12,7 @@ export const kSeparationWidth = 0.5
 
 /**常用样色 */
 export const kThemeBlack = '#333'
-export const kThemeSecondBlack = '#999'
+export const kThemeSecondBlack = '#666'
+export const kThemeThreeBlack = '#999'
 export const kSeparationColor = '#eee'
 

@@ -7,7 +7,7 @@ export const NETWORK_TIMEOUT = 2;
 //网络返回数据格式化异常
 export const NETWORK_JSON_EXCEPTION = 3;
 
-export const SUCCESS = 200;
+export const SUCCESS = 20000;
 
 export default function (code, statusText=null) {
     switch (code) {

@@ -41,119 +41,70 @@ class YQRouter extends Component {
         return (
             <Router>
                 <Modal key="modal" hideNavBar>
-                    <Scene
-                        key="YQGuidePage"
-                        component={YQGuidePage}
-                        hideNavBar
-                        renderBackButton={() => <YQCustomBackButton />}
-                        initial
-                    >
-                    </Scene>
-                    {/* <Tabs
-                        key="YQTabbar"
-                        hideNavBar
-                        panHandlers={null}
-                        backToInitial
-                        showLabel={false}
-                        //tabBarStyle={styles.tabBarStyle}
-                        activeBackgroundColor="white"
-                    >
+                    <Stack key='main'>
                         <Scene
-                            key={HOME}
-                            component={YQHome}
-                            icon={TabIcon}
-                            title={HOME}
-                            tabIconName={HOME_NORMAL}
-                            tabIconNameSelected={HOME_FOUS}
-                            hideNavBar={true}
-                        />
-                        <Scene
-                            key={STUDY}
-                            component={YQStudy}
-                            title="我的课程"
-                            icon={TabIcon}
-                            tabIconName={STUDY_NORMAL}
-                            tabIconNameSelected={STUDY_FOUS}
-
-                        //renderRightButton={() => <Text>'Right'</Text>}
-                        />
-                        <Scene
-                            component={YQExam}
-                            key={EXAM}
-                            title={EXAM}
-                            icon={TabIcon}
-                            tabIconName={EXAM_NORMAL}
-                            tabIconNameSelected={EXAM_FOUS}
-                        />
-
-                        <Scene
-                            key={ME}
-                            component={YQMine}
-                            title={ME}
+                            key="YQGuidePage"
+                            component={YQGuidePage}
                             hideNavBar
-                            icon={TabIcon}
-                            tabIconName={ME_NORMAL}
-                            tabIconNameSelected={ME_FOUS}
-                        />
-                    </Tabs> */}
-                    <Scene key='YQTabbar'
-                        hideNavBar
-                        panHandlers={null}
-                        type={ActionConst.RESET}
-                        tabs
-                        backToInitial
-                        showLabel={false}
-                        //tabBarStyle={styles.tabBarStyle}
-                        activeBackgroundColor="white"
-                    >
-                        <Scene
-                            key={HOME}
-                            component={YQHome}
-                            icon={TabIcon}
-                            title={HOME}
-                            tabIconName={HOME_NORMAL}
-                            tabIconNameSelected={HOME_FOUS}
-                            hideNavBar={true}
-                        />
-                        <Scene
-                            key={STUDY}
-                            component={YQStudy}
-                            title="我的课程"
-                            icon={TabIcon}
-                            tabIconName={STUDY_NORMAL}
-                            tabIconNameSelected={STUDY_FOUS}
-
-                        //renderRightButton={() => <Text>'Right'</Text>}
-                        />
-                        <Scene
-                            component={YQExam}
-                            key={EXAM}
-                            title={EXAM}
-                            icon={TabIcon}
-                            tabIconName={EXAM_NORMAL}
-                            tabIconNameSelected={EXAM_FOUS}
-                        />
-
-                        <Scene
-                            key={ME}
-                            component={YQMine}
-                            title={ME}
+                            renderBackButton={() => <YQCustomBackButton />}
+                            initial
+                        >
+                        </Scene>
+                        <Scene key='YQTabbar'
                             hideNavBar
-                            icon={TabIcon}
-                            tabIconName={ME_NORMAL}
-                            tabIconNameSelected={ME_FOUS}
-                        />
-                    </Scene>
-                    <Scene
-                        key="YQHomeSubPage"
-                        component={YQHomeSubPage}
-                        title="首页子页面"
-                        renderBackButton={() => <YQCustomBackButton />}>
-                    </Scene>
-                    {/* <Stack key='main'>
-                        
-                        
-                    </Stack> */}
+                            panHandlers={null}
+                            type={ActionConst.RESET}
+                            tabs
+                            backToInitial
+                            showLabel={false}
+                            //tabBarStyle={styles.tabBarStyle}
+                            activeBackgroundColor="white"
+                        >
+                            <Scene
+                                key={HOME}
+                                component={YQHome}
+                                icon={TabIcon}
+                                title={HOME}
+                                tabIconName={HOME_NORMAL}
+                                tabIconNameSelected={HOME_FOUS}
+                                hideNavBar={true}
+                            />
+                            <Scene
+                                key={STUDY}
+                                component={YQStudy}
+                                title="我的课程"
+                                icon={TabIcon}
+                                tabIconName={STUDY_NORMAL}
+                                tabIconNameSelected={STUDY_FOUS}
+
+                            //renderRightButton={() => <Text>'Right'</Text>}
+                            />
+                            <Scene
+                                component={YQExam}
+                                key={EXAM}
+                                title={EXAM}
+                                icon={TabIcon}
+                                tabIconName={EXAM_NORMAL}
+                                tabIconNameSelected={EXAM_FOUS}
+                            />
+
+                            <Scene
+                                key={ME}
+                                component={YQMine}
+                                title={ME}
+                                hideNavBar
+                                icon={TabIcon}
+                                tabIconName={ME_NORMAL}
+                                tabIconNameSelected={ME_FOUS}
+                            />
+                        </Scene>
+                        <Scene
+                            key="YQHomeSubPage"
+                            component={YQHomeSubPage}
+                            title="首页子页面"
+                            renderBackButton={() => <YQCustomBackButton />}>
+                        </Scene>
+                    </Stack>
                     {/**模态跳转模块 */}
                     <Scene
                         key="YQLoginPage"
