@@ -3,7 +3,7 @@
  * @Author: gyq
  * @Date: 2020-12-28 13:32:37
  * @Last Modified by: gyq
- * @Last Modified time: 2020-12-30 13:48:59
+ * @Last Modified time: 2021-01-04 16:39:10
  */
 
 import React from 'react';
@@ -16,6 +16,7 @@ import {
   kThemeThreeBlack,
   kWidth,
 } from '../../Utils/YQConstant';
+import StudyService from '../../YQAPI/Study/StudyService';
 
 class YQStudy extends React.Component {
   dataSource = ['课程1', '课程2', '课程3', '课程4'];
@@ -33,16 +34,19 @@ class YQStudy extends React.Component {
     );
   }
 
+  componentDidMount() {
+    StudyService.fetchMycourseNetwork()
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
   _createListItem = (item) => {
     return (
-      <View
-        style={{
-          marginLeft: 15,
-          marginRight: 15,
-          marginTop: 15,
-          borderRadius: 10,
-          backgroundColor: 'white',
-        }}>
+      <View style={styles.listItemStyle}>
         <View
           style={{
             marginLeft: 15,
@@ -64,16 +68,7 @@ class YQStudy extends React.Component {
             </Text>
           </View>
         </View>
-        <View
-          style={{
-            paddingRight: 15,
-            paddingLeft: 15,
-            paddingTop: 15,
-            backgroundColor: 'red',
-            flexDirection: 'row',
-            paddingBottom: 15,
-            justifyContent: 'space-between',
-          }}>
+        <View style={styles.bottomViewStyle}>
           <View style={{width: kWidth - 150, position: 'relative'}}>
             <View
               style={{flexDirection: 'row', justifyContent: 'space-between'}}>
@@ -86,28 +81,10 @@ class YQStudy extends React.Component {
               <Text>{'已学习10%'}</Text>
             </View>
             <View style={{marginTop: 8, backgroundColor: 'gray', height: 2}} />
-            <View
-              style={{
-                backgroundColor: 'blue',
-                height: 2,
-                position: 'relative',
-                top: -2,
-                left: 0,
-                width: 100,
-              }}
-            />
+            <View style={styles.progressViewStyle} />
           </View>
           <TouchableOpacity>
-            <View
-              style={{
-                borderWidth: 1,
-                borderColor: 'blue',
-                borderRadius: 14,
-                width: 75,
-                height: 28,
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}>
+            <View style={styles.studyButtonStyle}>
               <Text style={{color: 'blue', fontSize: 14}}>开始学习</Text>
             </View>
           </TouchableOpacity>
@@ -120,6 +97,39 @@ class YQStudy extends React.Component {
 const styles = StyleSheet.create({
   contentStyle: {
     flex: 1,
+  },
+  listItemStyle: {
+    marginLeft: 15,
+    marginRight: 15,
+    marginTop: 15,
+    borderRadius: 10,
+    backgroundColor: 'white',
+  },
+  bottomViewStyle: {
+    paddingRight: 15,
+    paddingLeft: 15,
+    paddingTop: 15,
+    backgroundColor: 'red',
+    flexDirection: 'row',
+    paddingBottom: 15,
+    justifyContent: 'space-between',
+  },
+  progressViewStyle: {
+    backgroundColor: 'blue',
+    height: 2,
+    position: 'relative',
+    top: -2,
+    left: 0,
+    width: 100,
+  },
+  studyButtonStyle: {
+    borderWidth: 1,
+    borderColor: 'blue',
+    borderRadius: 14,
+    width: 75,
+    height: 28,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 

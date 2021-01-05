@@ -9,22 +9,6 @@ import {HOME_URL} from './HomeHelper';
 import YQRequest from '../../YQRequestManager/YQRequest';
 
 class YQHomeService {
-  static fetchLoginNetwork = () => {
-    return YQRequest.post(
-      HOME_URL,
-      {
-        phone: '13776072264',
-        c: '111',
-      },
-      {
-        headers: {
-          platform: 'iOS',
-        },
-        loading: false,
-      },
-    );
-  };
-
   static fetchHomeNetwork = () => {
     return YQRequest.get(
       HOME_URL,

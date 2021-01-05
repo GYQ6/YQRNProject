@@ -11,9 +11,9 @@ function request(
   method,
 ) {
   console.log('options: ' + options);
-  // if (options.loading) {
-  //   YQLoading.showLoading();
-  // }
+  if (options.loading) {
+    YQLoading.showLoading();
+  }
   return new Promise((resolve, reject) => {
     let headers = options.headers;
     let config = {};
@@ -31,6 +31,7 @@ function request(
         headers: headers,
       };
     }
+    console.log('config: ' + config);
     instance(config)
       .then((res) => {
         // 此处作用很大，可以扩展很多功能。
@@ -42,12 +43,12 @@ function request(
         } else {
           //配置错误提示
           console.log('返回的错误:' + res);
-          if (res.msg) {
-            YQToast.showToast(res.msg);
-          } else {
-            let messagError = handlerError(res.code, res.msg);
-            YQToast.showToast(messagError);
-          }
+          // if (res !== undefined) {
+          //   YQToast.showToast(res.msg);
+          // } else {
+          //   let messagError = handlerError(res.code, null);
+          //   YQToast.showToast(messagError);
+          // }
         }
       })
       .catch((error) => {

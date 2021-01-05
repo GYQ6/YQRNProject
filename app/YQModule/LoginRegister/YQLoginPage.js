@@ -223,13 +223,8 @@ export default class YQLoginPage extends Component {
       ? (value = this.valideCode)
       : (value = this.password);
 
-    LoginRegister.fetchLoginNetwork(this.mobile, value)
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((error) => {
-        YQToast.showToast(error);
-      });
+    LoginRegister.fetchLoginNetwork(this.mobile, value);
+    Actions.replace('YQTabbar');
   };
 
   _handleRegisterEvent = () => {};
