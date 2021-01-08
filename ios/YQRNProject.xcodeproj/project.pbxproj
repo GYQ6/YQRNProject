@@ -62,6 +62,7 @@
 		62844C2F4968B3268D5A0F57 /* libPods-YQRNProject-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YQRNProject-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = YQRNProject/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		85A76C2B10B64973F824A620 /* libPods-YQRNProject.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YQRNProject.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D3B14DFE25A5884F001F4716 /* libRNCAsyncStorage.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libRNCAsyncStorage.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFAB40FA56D283F9A9E688F7 /* Pods-YQRNProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YQRNProject.debug.xcconfig"; path = "Target Support Files/Pods-YQRNProject/Pods-YQRNProject.debug.xcconfig"; sourceTree = "<group>"; };
 		E6B9CECB5744D82943B4F56C /* Pods-YQRNProject-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YQRNProject-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-YQRNProject-tvOSTests/Pods-YQRNProject-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
@@ -139,6 +140,7 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D3B14DFE25A5884F001F4716 /* libRNCAsyncStorage.a */,
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
 				85A76C2B10B64973F824A620 /* libPods-YQRNProject.a */,

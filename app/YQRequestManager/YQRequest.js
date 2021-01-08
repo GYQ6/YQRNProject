@@ -10,9 +10,9 @@ function request(
   params = {},
   method,
 ) {
-  console.log('options: ' + options);
-  if (options.loading) {
-    YQLoading.showLoading();
+  console.log(options);
+  if (options.loading === true) {
+    //YQLoading.showLoading();
   }
   return new Promise((resolve, reject) => {
     let headers = options.headers;
@@ -31,7 +31,6 @@ function request(
         headers: headers,
       };
     }
-    console.log('config: ' + config);
     instance(config)
       .then((res) => {
         // 此处作用很大，可以扩展很多功能。
@@ -60,11 +59,11 @@ function request(
   });
 }
 
-const get = (url, options = {}, params = {}) => {
+const get = (url, options, params = {}) => {
   return request(url, options, params, Method.get);
 };
 
-const post = (url, options = {}, params = {}) => {
+const post = (url, options, params = {}) => {
   return request(url, options, params, Method.post);
 };
 

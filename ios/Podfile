@@ -9,6 +9,11 @@ target 'YQRNProject' do
   use_react_native!(:path => config["reactNativePath"])
 
 
+  pod 'RealmJS', :path => '../node_modules/realm'
+
+
+  pod 'RNCAsyncStorage', :path => '../node_modules/@react-native-community/async-storage'
+
   target 'YQRNProjectTests' do
     inherit! :complete
     # Pods for testing

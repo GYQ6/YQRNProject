@@ -3,7 +3,7 @@
  * @Author: gyq
  * @Date: 2020-12-30 13:43:56
  * @Last Modified by: gyq
- * @Last Modified time: 2020-12-30 13:43:56
+ * @Last Modified time: 2021-01-08 14:43:37
  */
 
 import React from 'react';
@@ -12,10 +12,13 @@ import {TouchableOpacity} from 'react-native-gesture-handler';
 import {kWidth} from '../../Utils/YQConstant';
 import {MeImages} from '../../../YQLocalImages';
 import {Actions} from 'react-native-router-flux';
+import MeService from '../../YQAPI/Me/MeService';
+import YQUserInfoManager from '../../Utils/YQUserInfoManager';
 
 class YQMine extends React.Component {
   state = {
     headerImageViewHeight: 200,
+    meModel: {},
   };
   dataSource = [
     {
@@ -146,7 +149,7 @@ class YQMine extends React.Component {
           style={styles.listStyle}
           data={this.dataSource}
           keyExtractor={this._keyExtractor}
-          ListHeaderComponent={this._headerView}
+          ListHeaderComponent={this._headerView(this.state.meModel)}
           renderItem={(item) => this._createListItem(item)}
           onScroll={(event) => this.scrollViewDidScroll(event)}
         />
@@ -154,7 +157,34 @@ class YQMine extends React.Component {
     );
   }
 
-  _headerView = () => {
+  componentDidMount() {
+    YQUserInfoManager.getUserToken((token) => {
+      if (token) {
+        this._fetchMeHomeNetwork(token);
+      } else {
+        //Actions.jump('YQLoginPage');
+      }
+    });
+  }
+
+  _fetchMeHomeNetwork = (token) => {
+    MeService.fetchMeHomeNetwork(token)
+      .then((response) => {
+        this.setState({meModel: response});
+        console.log(response);
+        console.log(this.state.meModel);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  _headerView = (userInfo) => {
+    let userAvatar = userInfo ? userInfo.face : '';
+    let userName = userInfo ? userInfo.nickname : '登录/注册';
+    let encouraging = userInfo
+      ? userInfo.encouraging
+      : '总有一天, 你会感谢淡出那个不放弃的自己!';
     return (
       <View style={{backgroundColor: 'rgba(0, 0, 0, 0)'}}>
         <TouchableOpacity onPress={this._handleLoginPageEvent}>
@@ -171,14 +201,13 @@ class YQMine extends React.Component {
                 borderWidth: 2,
                 marginRight: 10,
               }}
+              source={{uri: {userAvatar}}}
             />
             <View>
               <Text style={{fontSize: 20, color: 'black', marginBottom: 10}}>
-                登录/注册
+                {userName}
               </Text>
-              <Text style={{fontSize: 13, color: '#999'}}>
-                总有一天, 你会感谢淡出那个不放弃的自己!
-              </Text>
+              <Text style={{fontSize: 13, color: '#999'}}>{encouraging}</Text>
             </View>
           </View>
           <View

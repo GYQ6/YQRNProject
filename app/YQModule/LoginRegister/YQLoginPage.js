@@ -66,7 +66,8 @@ export default class YQLoginPage extends Component {
         </View>
         <View style={{marginTop: 30}}>
           <TextInput
-            defaultValue="请输入手机号"
+            defaultValue="18738193980"
+            placeholder="请输入手机号"
             keyboardType="number-pad"
             clearButtonMode="while-editing"
             style={{
@@ -90,7 +91,7 @@ export default class YQLoginPage extends Component {
               borderBottomWidth: kSeparationWidth,
             }}>
             <TextInput
-              defaultValue={inputPlaceholder}
+              placeholder={inputPlaceholder}
               keyboardType="number-pad"
               style={{color: '#333', fontSize: 15, height: 45}}
               onChangeText={(text) => {
