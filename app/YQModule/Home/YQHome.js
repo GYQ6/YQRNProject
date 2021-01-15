@@ -15,6 +15,7 @@ import {
   SafeAreaView,
   Image,
   TouchableOpacity,
+  RefreshControl,
 } from 'react-native';
 import {kWidth, kThemeThreeBlack, kMarginSpace} from '../../Utils/YQConstant';
 import YQHomeService from '../../YQAPI/Home/HomeService';
@@ -22,6 +23,7 @@ import YQToast from '../../Utils/YQToast';
 import {Actions} from 'react-native-router-flux';
 import store from '../../Redux/Store/index';
 import Swiper from 'react-native-swiper';
+import {Toast} from '@ant-design/react-native';
 
 export default class YQHome extends Component {
   constructor() {
@@ -29,6 +31,7 @@ export default class YQHome extends Component {
     this._actionHandle();
     this.state = {
       homeModel: {},
+      isRefreshing: true,
     };
   }
 
@@ -42,23 +45,35 @@ export default class YQHome extends Component {
           style={{backgroundColor: '#F5F5FA'}}
           ListHeaderComponent={this.headerView}
           renderItem={({item}) => this._createListCell(item)}
-          refreshControl
+          onRefresh={() => {
+            this._fetchHomeNetwork(1);
+          }}
+          refreshing={this.state.isRefreshing === true ? true : false}
+          onEndReachedThreshold={0.3}
+          onEndReached={() => {
+            this._fetchHomeNetwork(1);
+          }}
         />
       </SafeAreaView>
     );
   }
 
   componentDidMount() {
+    this._fetchHomeNetwork(1);
+  }
+
+  _fetchHomeNetwork = (page) => {
     YQHomeService.fetchHomeNetwork()
       .then((response) => {
-        this.setState({homeModel: response});
+        this.setState({homeModel: response, isRefreshing: false});
         console.log(response);
         console.log(this.state.homeModel);
       })
       .catch((error) => {
         console.log(error);
       });
-  }
+  };
+
   customTitleView() {
     return (
       <View
@@ -331,17 +346,19 @@ export default class YQHome extends Component {
   };
 
   _rightBarItemClick = () => {
-    YQHomeService.fetchHomeNetwork()
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    console.log('click');
+    //YQToast.infoToast('loading...');
+    Toast.loading({
+      content: 'Loading...',
+      duration: 1,
+      onClose: function onClose() {
+        return console.log('Load complete !!!');
+      },
+    });
   };
 
   _headerListCellItem = () => {
-    YQToast.showToast('click');
+    Toast.offline('Network connection failed !!!');
   };
 
   _actionHandle = () => {

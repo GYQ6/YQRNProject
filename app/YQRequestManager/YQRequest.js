@@ -1,3 +1,10 @@
+/*
+ * @Author       : gyq
+ * @Date         : 2020-12-11 10:02:26
+ * @LastEditTime : 2021-01-14 17:15:58
+ * @LastEditors  : gyq
+ * @FilePath     : /YQReactNativeProject/app/YQRequestManager/YQRequest.js
+ */
 import YQLoading from '../Utils/YQLoading';
 import instance from './YQInterceptors';
 import * as Code from './YQNetworkCode';
@@ -12,7 +19,7 @@ function request(
 ) {
   console.log(options);
   if (options.loading === true) {
-    //YQLoading.showLoading();
+    YQLoading.showLoading();
   }
   return new Promise((resolve, reject) => {
     let headers = options.headers;

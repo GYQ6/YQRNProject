@@ -34,6 +34,8 @@ const ME_FOUS = 'tabbar_meIcon_selected';
 import YQHomeSubPage from '../YQModule/Home/YQHomeSubPage';
 import YQGuidePage from '../YQModule/LoginRegister/YQGuidePage';
 import YQLoginPage from '../YQModule/LoginRegister/YQLoginPage';
+import YQWebPage from '../YQModule/BasePage/YQWebPage';
+import YQAboutUs from '../YQModule/Mine/YQAboutUs';
 
 class YQRouter extends Component {
   render() {
@@ -101,6 +103,18 @@ class YQRouter extends Component {
               component={YQHomeSubPage}
               title="首页子页面"
               renderBackButton={() => <YQCustomBackButton />}
+            />
+            <Scene
+              key="YQAboutUs"
+              component={YQAboutUs}
+              title="关于我们"
+              renderBackButton={() => <YQCustomBackButton />}
+            />
+            <Scene
+              key="YQWebPage"
+              component={YQWebPage}
+              title="webView"
+              hideNavBar
             />
           </Stack>
           {/**模态跳转模块 */}

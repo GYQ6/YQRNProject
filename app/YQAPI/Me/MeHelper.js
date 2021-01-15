@@ -4,3 +4,4 @@
  * @Last Modified time: 2021-01-07 13:49:10
  */
 export const ME_HOME_URL = 'app/my_home';
+export const ME_ABOUT_US_URL = 'base/about-us';

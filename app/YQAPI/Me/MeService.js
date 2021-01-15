@@ -5,7 +5,7 @@
  * @Last Modified time: 2020-12-30 15:34:11
  */
 
-import {ME_HOME_URL} from './MeHelper';
+import {ME_HOME_URL, ME_ABOUT_US_URL} from './MeHelper';
 import YQRequest from '../../YQRequestManager/YQRequest';
 
 class YQMeService {
@@ -19,6 +19,10 @@ class YQMeService {
       },
       {},
     );
+  };
+
+  static fetchMeAboutUs = () => {
+    return YQRequest.get(ME_ABOUT_US_URL);
   };
 }
 

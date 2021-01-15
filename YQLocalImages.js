@@ -16,3 +16,7 @@ export const GuideImages = {
 export const MeImages = {
   meHeadBackgroundImage: require('./images/me_headBackgroundImage.png'),
 };
+
+export const CommentImages = {
+  goBackImage: require('./images/Me/navigationBar_backIcon.png'),
+};

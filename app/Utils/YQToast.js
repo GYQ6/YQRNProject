@@ -17,6 +17,10 @@ class YQToast {
       delay: 0,
     });
   }
+
+  static infoToast(text, position = ToastPosition.CENTER) {
+    Toast.success(text, null, position);
+  }
 }
 
 export default YQToast;

@@ -20,6 +20,9 @@
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		C243FEF51C6782DE1E9A7AE8 /* libPods-YQRNProject-YQRNProjectTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 461D6E66A859B72F6CC29847 /* libPods-YQRNProject-YQRNProjectTests.a */; };
 		C783E06880550E9AC0E1C75B /* libPods-YQRNProject-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 62844C2F4968B3268D5A0F57 /* libPods-YQRNProject-tvOS.a */; };
+		D3A64F3525B023580061E482 /* libRealmJS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D3A64F3425B023580061E482 /* libRealmJS.a */; };
+		17AE82E30203446DAB5F7CA8 /* antfill.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CA93608C81BA4116904491E4 /* antfill.ttf */; };
+		F08AAB64552E4DA8BC8A296B /* antoutline.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 27676FDFD20B40CBB8630500 /* antoutline.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,12 +65,15 @@
 		62844C2F4968B3268D5A0F57 /* libPods-YQRNProject-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YQRNProject-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = YQRNProject/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		85A76C2B10B64973F824A620 /* libPods-YQRNProject.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YQRNProject.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D3A64F3425B023580061E482 /* libRealmJS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libRealmJS.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3B14DFE25A5884F001F4716 /* libRNCAsyncStorage.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libRNCAsyncStorage.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFAB40FA56D283F9A9E688F7 /* Pods-YQRNProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YQRNProject.debug.xcconfig"; path = "Target Support Files/Pods-YQRNProject/Pods-YQRNProject.debug.xcconfig"; sourceTree = "<group>"; };
 		E6B9CECB5744D82943B4F56C /* Pods-YQRNProject-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YQRNProject-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-YQRNProject-tvOSTests/Pods-YQRNProject-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		F8B8D068B8C8CD85ED997A0B /* Pods-YQRNProject-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YQRNProject-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-YQRNProject-tvOSTests/Pods-YQRNProject-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		CA93608C81BA4116904491E4 /* antfill.ttf */ = {isa = PBXFileReference; name = "antfill.ttf"; path = "../node_modules/@ant-design/icons-react-native/fonts/antfill.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		27676FDFD20B40CBB8630500 /* antoutline.ttf */ = {isa = PBXFileReference; name = "antoutline.ttf"; path = "../node_modules/@ant-design/icons-react-native/fonts/antoutline.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +89,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3A64F3525B023580061E482 /* libRealmJS.a in Frameworks */,
 				35F57DA305C282C00F135F2E /* libPods-YQRNProject.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -140,6 +147,7 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D3A64F3425B023580061E482 /* libRealmJS.a */,
 				D3B14DFE25A5884F001F4716 /* libRNCAsyncStorage.a */,
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
@@ -203,6 +211,8 @@
 		FA8AFFCE2605452B8D63EA65 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				CA93608C81BA4116904491E4 /* antfill.ttf */,
+				27676FDFD20B40CBB8630500 /* antoutline.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -352,6 +362,8 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				17AE82E30203446DAB5F7CA8 /* antfill.ttf in Resources */,
+				F08AAB64552E4DA8BC8A296B /* antoutline.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

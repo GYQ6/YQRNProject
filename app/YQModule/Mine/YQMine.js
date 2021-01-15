@@ -1,15 +1,36 @@
-/* eslint-disable react-native/no-inline-styles */
 /*
- * @Author: gyq
- * @Date: 2020-12-30 13:43:56
- * @Last Modified by: gyq
- * @Last Modified time: 2021-01-08 14:43:37
+ *                        .::::.
+ *                      .::::::::.
+ *                     :::::::::::
+ *                  ..:::::::::::'
+ *               '::::::::::::'
+ *                 .::::::::::
+ *            '::::::::::::::..
+ *                 ..::::::::::::.
+ *               ``::::::::::::::::
+ *                ::::``:::::::::'        .:::.
+ *               ::::'   ':::::'       .::::::::.
+ *             .::::'      ::::     .:::::::'::::.
+ *            .:::'       :::::  .:::::::::' ':::::.
+ *           .::'        :::::.:::::::::'      ':::::.
+ *          .::'         ::::::::::::::'         ``::::.
+ *      ...:::           ::::::::::::'              ``::.
+ *     ````':.          ':::::::::'                  ::::..
+ *                        '.:::::'                    ':'````..
+ *
+ * @Author       : gyq
+ * @Date         : 2020-12-11 10:02:26
+ * @LastEditTime : 2021-01-14 11:13:47
+ * @LastEditors  : gyq
+ * @FilePath     : /YQReactNativeProject/app/YQModule/Mine/YQMine.js
  */
+
+/* eslint-disable react-native/no-inline-styles */
 
 import React from 'react';
 import {View, FlatList, StyleSheet, Image, Text} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
-import {kWidth} from '../../Utils/YQConstant';
+import {kWidth, kListHeight, kHeight} from '../../Utils/YQConstant';
 import {MeImages} from '../../../YQLocalImages';
 import {Actions} from 'react-native-router-flux';
 import MeService from '../../YQAPI/Me/MeService';
@@ -81,19 +102,19 @@ class YQMine extends React.Component {
 
   headerItemArr = [
     {
-      image: '',
+      image: 'me_myOrderIcon',
       title: '我的订单',
     },
     {
-      image: '',
+      image: 'me_myDownloadIcon',
       title: '我的下载',
     },
     {
-      image: '',
+      image: 'me_myCourierIcon',
       title: '收货地址',
     },
     {
-      image: '',
+      image: 'me_myCouponIcon',
       title: '优惠券',
     },
   ];
@@ -125,24 +146,31 @@ class YQMine extends React.Component {
             flexDirection: 'row',
             justifyContent: 'flex-end',
             alignItems: 'flex-end',
+            //backgroundColor: 'red',
           }}>
           <TouchableOpacity
             style={{
-              backgroundColor: 'red',
+              //backgroundColor: 'red',
               height: 20,
               width: 20,
               marginRight: 20,
             }}>
-            <Image />
+            <Image
+              style={{height: 20, width: 20}}
+              source={{uri: 'me_messageIcon'}}
+            />
           </TouchableOpacity>
           <TouchableOpacity
             style={{
-              backgroundColor: 'red',
+              //backgroundColor: 'red',
               height: 20,
               width: 20,
               marginRight: 15,
             }}>
-            <Image />
+            <Image
+              style={{height: 20, width: 20}}
+              source={{uri: 'me_settingIcon'}}
+            />
           </TouchableOpacity>
         </View>
         <FlatList
@@ -159,6 +187,7 @@ class YQMine extends React.Component {
 
   componentDidMount() {
     YQUserInfoManager.getUserToken((token) => {
+      console.log('token: ' + token);
       if (token) {
         this._fetchMeHomeNetwork(token);
       } else {
@@ -180,7 +209,8 @@ class YQMine extends React.Component {
   };
 
   _headerView = (userInfo) => {
-    let userAvatar = userInfo ? userInfo.face : '';
+    let face = userInfo.face;
+    let userAvatar = face > 0 ? userInfo.face : 'me_defaultAvatar_70';
     let userName = userInfo ? userInfo.nickname : '登录/注册';
     let encouraging = userInfo
       ? userInfo.encouraging
@@ -201,7 +231,7 @@ class YQMine extends React.Component {
                 borderWidth: 2,
                 marginRight: 10,
               }}
-              source={{uri: {userAvatar}}}
+              source={{uri: userAvatar}}
             />
             <View>
               <Text style={{fontSize: 20, color: 'black', marginBottom: 10}}>
@@ -228,37 +258,25 @@ class YQMine extends React.Component {
   _createListItem = (item) => {
     let itemM = item.item;
     return (
-      <View
-        style={{
-          position: 'relative',
-          flexDirection: 'row',
-          width: kWidth,
-          height: itemM.height,
-          borderBottomWidth: 0.5,
-          borderBottomColor: '#eee',
-          alignItems: 'center',
-        }}>
-        <Image
-          style={{
-            marginLeft: 15,
-            marginRight: 10,
-            width: 20,
-            height: 20,
-            backgroundColor: 'red',
-          }}
-        />
-        <Text style={{fontSize: 15, color: '#333'}}>{itemM.title}</Text>
-        <View style={{position: 'absolute', right: 15}}>
-          <TouchableOpacity
-            style={{flexDirection: 'row', alignItems: 'center'}}
-            onPress={null}>
-            <Text style={{fontSize: 13, color: '#999', marginRight: 8}}>
-              {itemM.subTitle}
-            </Text>
-            <Image style={{width: 10, height: 10, backgroundColor: 'red'}} />
-          </TouchableOpacity>
+      <TouchableOpacity onPress={this._clickListItemEvent}>
+        <View style={styles.listItemStyle}>
+          <Image
+            style={styles.listItemImageStyle}
+            source={{uri: itemM.image}}
+          />
+          <Text style={{fontSize: 15, color: '#333'}}>{itemM.title}</Text>
+          <View style={{position: 'absolute', right: 15}}>
+            <TouchableOpacity
+              style={{flexDirection: 'row', alignItems: 'center'}}
+              onPress={null}>
+              <Text style={{fontSize: 13, color: '#999', marginRight: 8}}>
+                {itemM.subTitle}
+              </Text>
+              <Image style={{width: 10, height: 10, backgroundColor: 'red'}} />
+            </TouchableOpacity>
+          </View>
         </View>
-      </View>
+      </TouchableOpacity>
     );
   };
 
@@ -270,10 +288,10 @@ class YQMine extends React.Component {
         <Image
           style={{
             marginBottom: 8,
-            backgroundColor: 'red',
             width: 25,
             height: 30,
           }}
+          source={{uri: item.image}}
         />
         <Text>{item.title}</Text>
       </View>
@@ -295,25 +313,39 @@ class YQMine extends React.Component {
   _handleLoginPageEvent = () => {
     Actions.jump('YQLoginPage');
   };
+
+  _clickListItemEvent = () => {
+    Actions.YQAboutUs();
+  };
 }
 
 const styles = StyleSheet.create({
   containerStyle: {
     flex: 1,
-    backgroundColor: 'white',
+    //backgroundColor: 'red',
     position: 'relative',
   },
   listStyle: {
-    flex: 1,
+    height: kHeight - 64 - 49,
     //backgroundColor: 'white',
     position: 'absolute',
     top: 64,
     left: 0,
   },
   listItemStyle: {
+    position: 'relative',
     flexDirection: 'row',
     width: kWidth,
-    height: 50,
+    height: 60,
+    borderBottomWidth: 0.5,
+    borderBottomColor: '#eee',
+    alignItems: 'center',
+  },
+  listItemImageStyle: {
+    marginLeft: 15,
+    marginRight: 10,
+    width: 20,
+    height: 20,
   },
 });
 
